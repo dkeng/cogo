@@ -1,0 +1,5 @@
+[sqlite]
+address = "../db/cogo.db"
+log = true
+max_open = 100
+max_idle = 10

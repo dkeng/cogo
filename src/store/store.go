@@ -19,25 +19,25 @@ type Store struct {
 // Open 打开存储
 func (s *Store) Open() (err error) {
 	// 初始化数据库
-	db, err := gorm.Open("mysql", viper.GetString("mysql.address"))
+	db, err := gorm.Open("sqlite3", viper.GetString("sqlite.address"))
 	if err != nil {
 		logger.Fatalf(
-			"初始化 MySql 连接失败: %s \n",
-			errors.Wrap(err, "打开MySql连接失败"),
+			"初始化 Sqlite 连接失败: %s \n",
+			errors.Wrap(err, "打开 Sqlite 连接失败"),
 		)
 	}
 
 	if db.DB().Ping() != nil {
 		logger.Fatalf(
-			"初始化 MySql 连接失败: %s \n",
-			errors.Wrap(err, "Ping MySql 失败"),
+			"初始化 Sqlite 连接失败: %s \n",
+			errors.Wrap(err, "Ping Sqlite 失败"),
 		)
 	}
 
-	db.LogMode(viper.GetBool("mysql.log"))
+	db.LogMode(viper.GetBool("sqlite.log"))
 
-	db.DB().SetMaxOpenConns(viper.GetInt("mysql.max_open"))
-	db.DB().SetMaxIdleConns(viper.GetInt("mysql.max_idle"))
+	db.DB().SetMaxOpenConns(viper.GetInt("sqlite.max_open"))
+	db.DB().SetMaxIdleConns(viper.GetInt("sqlite.max_idle"))
 	// db.DB().SetConnMaxLifetime(time.Hour)
 
 	db.AutoMigrate()
