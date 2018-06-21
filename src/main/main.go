@@ -2,9 +2,11 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
+	"os"
+	"os/signal"
 
+	"github.com/dkeng/cogo/src/api"
 	"github.com/dkeng/cogo/src/main/config"
 	cogoStore "github.com/dkeng/cogo/src/store"
 	"github.com/spf13/viper"
@@ -47,8 +49,14 @@ func main() {
 	if !open() {
 		return
 	}
+
+	api.Startup(store)
+
+	quit := make(chan os.Signal)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
 	defer close()
-	fmt.Println("Hello,Cogo!!!")
+	log.Println("Server exiting")
 }
 
 // open 打开
@@ -72,5 +80,6 @@ func open() bool {
 
 // 关闭
 func close() {
+	api.Close()
 	store.Close()
 }
