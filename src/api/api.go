@@ -19,7 +19,7 @@ var (
 func Startup(store *store.Store) {
 	router := gin.Default()
 	router.GET("/", func(c *gin.Context) {
-		c.String(200, "Welcome coupon server")
+		c.String(200, "Welcome cogo server")
 	})
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
