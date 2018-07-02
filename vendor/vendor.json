@@ -265,6 +265,11 @@
 			"revision": ""
 		},
 		{
+			"checksumSHA1": "HARrQ8ETvQCyJUzCwO3P1PEqJyk=",
+			"path": "google.golang.org/grpc",
+			"revision": ""
+		},
+		{
 			"checksumSHA1": "P/k5ZGf0lEBgpKgkwy++F7K1PSg=",
 			"path": "gopkg.in/go-playground/validator.v8",
 			"revision": "5f1438d3fca68893a817e4a66806cea46a9e4ebf",
