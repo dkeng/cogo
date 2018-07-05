@@ -43,6 +43,7 @@ func (s *Store) Open() (err error) {
 
 	db.AutoMigrate(
 		&entity.Application{},
+		&entity.Config{},
 	)
 	s.DB = db
 	return
