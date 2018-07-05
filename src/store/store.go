@@ -1,6 +1,7 @@
 package store
 
 import (
+	"github.com/dkeng/cogo/src/entity"
 	"github.com/dkeng/cogo/src/store/sqlite"
 	"github.com/dkeng/pkg/logger"
 	"github.com/spf13/viper"
@@ -40,7 +41,9 @@ func (s *Store) Open() (err error) {
 	db.DB().SetMaxIdleConns(viper.GetInt("sqlite.max_idle"))
 	// db.DB().SetConnMaxLifetime(time.Hour)
 
-	db.AutoMigrate()
+	db.AutoMigrate(
+		&entity.Application{},
+	)
 	s.DB = db
 	return
 }
