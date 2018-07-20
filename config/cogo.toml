@@ -2,7 +2,7 @@
 addr = "0.0.0.0:5000"
 mode = "debug"
 [sqlite]
-address = "../db/cogo.db"
+address = "./db/cogo.db"
 log = true
 max_open = 100
 max_idle = 10

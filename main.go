@@ -7,25 +7,25 @@ import (
 	"os/signal"
 
 	"github.com/dkeng/cogo/src/api"
-	"github.com/dkeng/cogo/src/main/config"
+	"github.com/dkeng/cogo/src/config"
 	cogoStore "github.com/dkeng/cogo/src/store"
 	"github.com/spf13/viper"
 )
 
 var (
 	flagConfig string
-	flagH      bool
+	flagHelp   bool
 )
 
 func init() {
 	flag.StringVar(&flagConfig, "config", "", "配置文件(.json,.yaml,.toml)")
-	flag.BoolVar(&flagH, "help", false, "帮助")
+	flag.BoolVar(&flagHelp, "help", false, "帮助")
 	flag.Parse()
 }
 
 // checkFlag 检查Flag
 func checkFlag() bool {
-	if flagH {
+	if flagHelp {
 		flag.PrintDefaults()
 		return false
 	}
