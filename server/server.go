@@ -1,4 +1,4 @@
-package api
+package server
 
 import (
 	"context"
@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/dkeng/cogo/src/store"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
@@ -15,13 +14,13 @@ var (
 	httpServer *http.Server
 )
 
-// Startup 启动
-func Startup(store *store.Store) {
-	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
+// Start 启动
+func Start() {
+	rest := gin.Default()
+	rest.GET("/", func(c *gin.Context) {
 		c.String(200, "Welcome cogo server")
 	})
-	router.GET("/ping", func(c *gin.Context) {
+	rest.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
@@ -29,7 +28,7 @@ func Startup(store *store.Store) {
 
 	httpServer = &http.Server{
 		Addr:    viper.GetString("system.addr"),
-		Handler: router,
+		Handler: rest,
 	}
 
 	go func() {
