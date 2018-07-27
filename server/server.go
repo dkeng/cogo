@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"context"
@@ -14,12 +14,13 @@ var (
 	httpServer *http.Server
 )
 
-func start() {
-	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
+// Start 启动
+func Start() {
+	rest := gin.Default()
+	rest.GET("/", func(c *gin.Context) {
 		c.String(200, "Welcome cogo server")
 	})
-	router.GET("/ping", func(c *gin.Context) {
+	rest.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
@@ -27,7 +28,7 @@ func start() {
 
 	httpServer = &http.Server{
 		Addr:    viper.GetString("system.addr"),
-		Handler: router,
+		Handler: rest,
 	}
 
 	go func() {
@@ -37,7 +38,8 @@ func start() {
 	}()
 }
 
-func close() {
+// Close 关闭
+func Close() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 

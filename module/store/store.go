@@ -1,8 +1,8 @@
-package model
+package store
 
 import (
+	"log"
 	"os"
-	"time"
 
 	"github.com/dkeng/pkg/logger"
 	"github.com/jinzhu/gorm"
@@ -11,14 +11,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
 )
-
-// BaseModel is base entity
-type BaseModel struct {
-	ID        int64      `gorm:"primary_key;unique_index"`
-	CreatedAt time.Time  `json:"created_at" gorm:"not null;type:DATETIME"`
-	UpdatedAt time.Time  `json:"updated_at" gorm:"not null;type:DATETIME"`
-	DeletedAt *time.Time `json:"deleted_at,omitempty" sql:"index" gorm:"type:DATETIME"`
-}
 
 // DB 数据库连接
 var DB *gorm.DB
@@ -48,13 +40,18 @@ func initDB() {
 	db.DB().SetMaxIdleConns(viper.GetInt("mysql.max_idle"))
 	// db.DB().SetConnMaxLifetime(time.Hour)
 
-	db.AutoMigrate(
-		&Application{},
-		&Config{},
-	)
 	DB = db
 }
 
-func init() {
+// Start 启动存储
+func Start() {
 	initDB()
+}
+
+// Close 关闭
+func Close() {
+	err := DB.Close()
+	if err != nil {
+		log.Println(err)
+	}
 }
