@@ -17,14 +17,7 @@ var (
 // Start 启动
 func Start() {
 	rest := gin.Default()
-	rest.GET("/", func(c *gin.Context) {
-		c.String(200, "Welcome cogo server")
-	})
-	rest.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	setRouter(rest)
 
 	httpServer = &http.Server{
 		Addr:    viper.GetString("system.addr"),
