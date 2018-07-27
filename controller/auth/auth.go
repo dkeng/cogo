@@ -1,6 +1,8 @@
 package auth
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 // Authenticator 身份验证
 func Authenticator(userID string, password string, c *gin.Context) (interface{}, bool) {

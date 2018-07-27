@@ -52,13 +52,13 @@ func setRouter(handler *gin.Engine) {
 		// auth.GET("/hello", helloHandler)
 		auth.GET("/refresh_token", authMiddleware.RefreshHandler)
 
-		handler.GET("/applications", application.Get)
-		handler.POST("/applications", application.Post)
-		handler.DELETE("/applications/:id", application.Delete)
+		auth.GET("/applications", application.Get)
+		auth.POST("/applications", application.Post)
+		auth.DELETE("/applications/:id", application.Delete)
 
-		handler.GET("/configs", config.Get)
-		handler.POST("/configs", config.Post)
-		handler.PUT("/configs/:id", config.Put)
-		handler.DELETE("/configs/:id", config.Delete)
+		auth.GET("/configs", config.Get)
+		auth.POST("/configs", config.Post)
+		auth.PUT("/configs/:id", config.Put)
+		auth.DELETE("/configs/:id", config.Delete)
 	}
 }
