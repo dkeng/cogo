@@ -7,22 +7,22 @@ import (
 )
 
 // Get 获取
-func Get(*gin.Context) {
+func Get(c *gin.Context) {
 
 }
 
 // Post 新增
-func Post(*gin.Context) {
+func Post(c *gin.Context) {
 
 }
 
 // Delete 删除
-func Delete(*gin.Context) {
+func Delete(c *gin.Context) {
 	store.DB.Where("id = ?", "").Delete(&model.Config{})
 }
 
 // Put 修改
-func Put(*gin.Context) {
+func Put(c *gin.Context) {
 	conf := new(model.Config)
 	store.DB.Update(conf)
 }
