@@ -1,7 +1,7 @@
 package store
 
 import (
-	"github.com/dkeng/cogo/entity"
+	"github.com/dkeng/cogo/store/entity"
 	"github.com/dkeng/pkg/logger"
 	"github.com/spf13/viper"
 
@@ -59,8 +59,8 @@ func (s *Store) Close() {
 
 // AllStore 所有存储
 type AllStore struct {
-	ApplicationStore ApplicationStore
-	ConfigStore      ConfigStore
+	ApplicationStore *ApplicationStore
+	ConfigStore      *ConfigStore
 }
 
 // baseStore shared DB data

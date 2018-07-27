@@ -7,7 +7,8 @@ import (
 	"os/signal"
 
 	"github.com/dkeng/cogo/api"
-	"github.com/dkeng/cogo/config"
+	"github.com/dkeng/cogo/module"
+
 	cogoStore "github.com/dkeng/cogo/store"
 	"github.com/spf13/viper"
 )
@@ -67,7 +68,7 @@ func open() bool {
 		log.Fatalf("读取配置文件错误：%s", err.Error())
 		return false
 	}
-	config.Init()
+	module.ConfigInit()
 	// 储存
 	store = new(cogoStore.Store)
 	err := store.Open()

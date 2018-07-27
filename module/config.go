@@ -1,4 +1,4 @@
-package config
+package module
 
 import (
 	"github.com/dkeng/pkg/logger"
@@ -6,8 +6,8 @@ import (
 	"github.com/spf13/viper"
 )
 
-// Init 配置文件初始化
-func Init() {
+// ConfigInit 配置文件初始化
+func ConfigInit() {
 	// 日志初始化
 	logger.Init()
 	// logger.RegisterSentry()
