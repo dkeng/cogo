@@ -1,4 +1,4 @@
-package entity
+package model
 
 // Config 配置
 type Config struct {
@@ -10,5 +10,5 @@ type Config struct {
 	Version float64 `gorm:"not null"`
 	// 应用ID
 	AppID int64 `gorm:"not null"`
-	BaseEntity
+	BaseModel
 }

@@ -1,4 +1,4 @@
-package api
+package main
 
 import (
 	"context"
@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/dkeng/cogo/src/store"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
@@ -15,8 +14,7 @@ var (
 	httpServer *http.Server
 )
 
-// Startup 启动
-func Startup(store *store.Store) {
+func start() {
 	router := gin.Default()
 	router.GET("/", func(c *gin.Context) {
 		c.String(200, "Welcome cogo server")
@@ -39,8 +37,7 @@ func Startup(store *store.Store) {
 	}()
 }
 
-// Close 关闭
-func Close() {
+func close() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
