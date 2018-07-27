@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "CvKfLiv2fz/EiJ6Y/PP0pRHoKnw=",
+			"path": "github.com/appleboy/gin-jwt",
+			"revision": "c21115ccebd465511fefed0a0b9f9a4f5a08318d",
+			"revisionTime": "2018-07-20T00:36:47Z"
+		},
+		{
 			"checksumSHA1": "j5lrUUvdX/IICLK/vg9TG9h6Zvs=",
 			"path": "github.com/certifi/gocertifi",
 			"revision": "deb3ae2ef2610fde3330947281941c562861188b",
@@ -135,12 +141,6 @@
 			"revisionTime": "2018-05-12T06:29:00Z"
 		},
 		{
-			"checksumSHA1": "4VZ1gLZHMumRjV3fclS1aX8S1aQ=",
-			"path": "github.com/jinzhu/gorm/dialects/sqlite",
-			"revision": "82eb9f8a5bbb5e6b929d2f0ae5b934e6a253f94e",
-			"revisionTime": "2018-05-12T06:29:00Z"
-		},
-		{
 			"checksumSHA1": "4eelJOSLZoDzLuaJvgilOBVNovU=",
 			"path": "github.com/jinzhu/inflection",
 			"revision": "04140366298a54a039076d798123ffa108fff46c",
@@ -163,12 +163,6 @@
 			"path": "github.com/mattn/go-isatty",
 			"revision": "6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c",
 			"revisionTime": "2017-11-07T05:05:31Z"
-		},
-		{
-			"checksumSHA1": "vOU8oTlSs07Z6qIN0wU/Tvs9gpw=",
-			"path": "github.com/mattn/go-sqlite3",
-			"revision": "25ecb14adfc7543176f7d85291ec7dba82c6f7e4",
-			"revisionTime": "2018-05-30T13:44:54Z"
 		},
 		{
 			"checksumSHA1": "ewGq4nGalpCQOHcmBTdAEQx1wW0=",
@@ -263,6 +257,12 @@
 		{
 			"path": "golang.org/x/text/unicode/norm",
 			"revision": ""
+		},
+		{
+			"checksumSHA1": "t37dLDJJHFiXijVk9izoM91M9Ho=",
+			"path": "gopkg.in/dgrijalva/jwt-go.v3",
+			"revision": "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e",
+			"revisionTime": "2018-03-08T23:13:08Z"
 		},
 		{
 			"checksumSHA1": "P/k5ZGf0lEBgpKgkwy++F7K1PSg=",

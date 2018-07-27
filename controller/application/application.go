@@ -7,17 +7,17 @@ import (
 )
 
 // Get 获取
-func Get(*gin.Context) {
+func Get(c *gin.Context) {
 
 }
 
 // Post 创建
-func Post(*gin.Context) {
+func Post(c *gin.Context) {
 	app := new(model.Application)
 	store.DB.Create(app)
 }
 
 // Delete 删除
-func Delete(*gin.Context) {
+func Delete(c *gin.Context) {
 	store.DB.Where("id = ?", "").Delete(&model.Application{})
 }
