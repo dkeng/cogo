@@ -1,8 +1,8 @@
 package store
 
 import (
-	"github.com/dkeng/cogo/src/entity"
-	"github.com/dkeng/cogo/src/store/sqlite"
+	"github.com/dkeng/cogo/entity"
+	"github.com/dkeng/cogo/store/sqlite"
 	"github.com/dkeng/pkg/logger"
 	"github.com/spf13/viper"
 	// sqlite

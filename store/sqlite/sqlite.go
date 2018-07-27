@@ -2,7 +2,6 @@ package sqlite
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/pkg/errors"
 )
 
 // AllSqliteStore mysql存储
@@ -30,14 +29,4 @@ func getLimitOffset(page, perPage *int) *int {
 	}
 	offset := (*page - 1) * *perPage
 	return &offset
-}
-
-func switchDB(tran *gorm.DB, db *gorm.DB) *gorm.DB {
-	if tran != nil {
-		return tran
-	}
-	if db != nil {
-		return db
-	}
-	panic(errors.New("转换数据库失败"))
 }

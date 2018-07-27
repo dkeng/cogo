@@ -6,9 +6,9 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/dkeng/cogo/src/api"
-	"github.com/dkeng/cogo/src/config"
-	cogoStore "github.com/dkeng/cogo/src/store"
+	"github.com/dkeng/cogo/api"
+	"github.com/dkeng/cogo/config"
+	cogoStore "github.com/dkeng/cogo/store"
 	"github.com/spf13/viper"
 )
 
