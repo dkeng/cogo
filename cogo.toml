@@ -1,7 +1,9 @@
 [system]
 addr = "0.0.0.0:5000"
 mode = "debug"
-[sqlite]
+[db]
+# 数据库
+dialect = "sqlite"
 address = "./db/cogo.db"
 log = true
 max_open = 100
