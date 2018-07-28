@@ -2,7 +2,6 @@ package model
 
 // Application 应用
 type Application struct {
-	AppKey    string `gorm:"not null;unique_index"`
-	AppSecret string `gorm:"not null;size:32"`
+	AppSecret string `json:"secret" gorm:"column:secret;not null;size:32"`
 	BaseModel
 }

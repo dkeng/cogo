@@ -15,6 +15,12 @@
 			"revisionTime": "2018-01-18T20:34:23Z"
 		},
 		{
+			"checksumSHA1": "Cujnq6F37SXKawauWPlgkZKF4BY=",
+			"path": "github.com/dkeng/pkg/context/gin",
+			"revision": "11c7d7b00361f68b268596039ae93668c7fc61fa",
+			"revisionTime": "2018-07-28T15:15:29Z"
+		},
+		{
 			"checksumSHA1": "zE1h+TpPWTJZg1LTl0UeU70AGAo=",
 			"path": "github.com/dkeng/pkg/logger",
 			"revision": "657e29e75bbb29b843213cf37acd83ebfa263634",
