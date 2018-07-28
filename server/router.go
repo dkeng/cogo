@@ -7,6 +7,7 @@ import (
 	"github.com/dkeng/cogo/controller/application"
 	"github.com/dkeng/cogo/controller/auth"
 	"github.com/dkeng/cogo/controller/config"
+	wgin "github.com/dkeng/pkg/context/gin"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,18 +21,7 @@ var (
 		Authenticator: auth.Authenticator,
 		Authorizator:  auth.Authorizator,
 		Unauthorized:  auth.Unauthorized,
-		// TokenLookup is a string in the form of "<source>:<name>" that is used
-		// to extract token from the request.
-		// Optional. Default value "header:Authorization".
-		// Possible values:
-		// - "header:<name>"
-		// - "query:<name>"
-		// - "cookie:<name>"
-		TokenLookup: "header: Authorization, query: token, cookie: jwt",
-		// TokenLookup: "query:token",
-		// TokenLookup: "cookie:token",
-
-		// TokenHeadName is a string in the header. Default value is "Bearer"
+		TokenLookup:   "header: Authorization, query: token, cookie: jwt",
 		TokenHeadName: "Bearer",
 
 		// TimeFunc provides the current time. You can override it to use another time value. This is useful for testing or if your server uses a different time zone than your tokens.
@@ -52,13 +42,15 @@ func setRouter(handler *gin.Engine) {
 		// auth.GET("/hello", helloHandler)
 		auth.GET("/refresh_token", authMiddleware.RefreshHandler)
 
-		auth.GET("/applications", application.Get)
-		auth.POST("/applications", application.Post)
-		auth.DELETE("/applications/:id", application.Delete)
+		auth.GET("/applications", wgin.WrapControllerFunction(application.Get))
+		auth.GET("/applications/:id", wgin.WrapControllerFunction(application.GetOne))
+		auth.GET("/applications/:id/configs", wgin.WrapControllerFunction(application.GetConfigs))
+		auth.POST("/applications", wgin.WrapControllerFunction(application.Post))
+		auth.DELETE("/applications/:id", wgin.WrapControllerFunction(application.Delete))
 
-		auth.GET("/configs", config.Get)
-		auth.POST("/configs", config.Post)
-		auth.PUT("/configs/:id", config.Put)
-		auth.DELETE("/configs/:id", config.Delete)
+		auth.GET("/configs", wgin.WrapControllerFunction(config.Get))
+		auth.POST("/configs", wgin.WrapControllerFunction(config.Post))
+		auth.PUT("/configs/:id", wgin.WrapControllerFunction(config.Put))
+		auth.DELETE("/configs/:id", wgin.WrapControllerFunction(config.Delete))
 	}
 }

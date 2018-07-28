@@ -2,13 +2,13 @@ package model
 
 // Config 配置
 type Config struct {
-	Key   string `gorm:"not null;unique_index"`
-	Value string `gorm:"not null"`
+	Name  string `json:"name" gorm:"not null;unique_index"`
+	Value string `json:"value" gorm:"not null"`
 	// 模式
-	Mode byte `gorm:"not null;type:char"`
+	Mode byte `json:"mode" gorm:"not null;type:char"`
 	// 版本
-	Version float64 `gorm:"not null"`
+	Version float64 `json:"version" gorm:"not null"`
 	// 应用ID
-	AppID int64 `gorm:"not null"`
+	AppID int64 `json:"app_id" gorm:"not null"`
 	BaseModel
 }

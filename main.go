@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/signal"
 	// 加载配置文件
+	"github.com/dkeng/cogo/model"
 	_ "github.com/dkeng/cogo/module/config"
 	// 初始化存储
 	"github.com/dkeng/cogo/module/store"
@@ -13,6 +14,7 @@ import (
 
 func init() {
 	store.Start()
+	model.AutoMigrate()
 	server.Start()
 }
 func main() {

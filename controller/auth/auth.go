@@ -2,21 +2,15 @@ package auth
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/spf13/viper"
 )
 
 // Authenticator 身份验证
-func Authenticator(userID string, password string, c *gin.Context) (interface{}, bool) {
-	if (userID == "admin" && password == "admin") || (userID == "test" && password == "test") {
+func Authenticator(username string, password string, c *gin.Context) (interface{}, bool) {
 
-		// &User{
-		// 	UserName:  userId,
-		// 	LastName:  "Bo-Yi",
-		// 	FirstName: "Wu",
-		// }
+	if username == viper.GetString("system.username") && password == viper.GetString("system.password") {
 		return gin.H{
-			"user_name":  userID,
-			"last_name":  "Deyi",
-			"first_name": "Xu",
+			"user_name": username,
 		}, true
 	}
 
@@ -25,7 +19,7 @@ func Authenticator(userID string, password string, c *gin.Context) (interface{},
 
 // Authorizator 授权
 func Authorizator(user interface{}, c *gin.Context) bool {
-	if v, ok := user.(string); ok && v == "admin" {
+	if v, ok := user.(string); ok && v == viper.GetString("system.username") {
 		return true
 	}
 

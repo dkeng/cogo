@@ -1,6 +1,8 @@
 [system]
 addr = "0.0.0.0:5000"
 mode = "debug"
+username = "admin"
+password = "admin"
 [mysql]
 address = "root:123456@tcp(127.0.0.1:3306)/cogo?charset=utf8&parseTime=True"
 log = true
