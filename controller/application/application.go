@@ -19,7 +19,7 @@ import (
 func Get(w *gin.WrapContenxt) {
 	var apps []model.Application
 	if store.DB.Find(apps).RecordNotFound() {
-		w.Status(404)
+		w.Status(http.StatusNotFound)
 	} else {
 		w.OKJSON(gin.Result{
 			"data":  apps,
@@ -52,14 +52,14 @@ func GetConfigs(w *gin.WrapContenxt) {
 	}
 
 	var configs []model.Config
-	if store.DB.Where(query, values...).Find(&configs).RecordNotFound() {
-		w.Status(404)
-	} else {
-		w.OKJSON(gin.Result{
-			"data":  configs,
-			"total": len(configs),
-		})
+	if err := store.DB.Where(query, values...).Find(&configs).Error; err != nil {
+		w.ErrorJSON(errAppSelect)
+		return
 	}
+	w.OKJSON(gin.Result{
+		"data":  configs,
+		"total": len(configs),
+	})
 }
 
 // Post 创建
@@ -71,7 +71,7 @@ func Post(w *gin.WrapContenxt) {
 
 	if err := store.DB.Create(app).Error; err != nil {
 		log.Println(err)
-		w.ErrorJSON("创建应用失败")
+		w.ErrorJSON(errAppCreate)
 	} else {
 		w.OKJSON(app)
 	}
@@ -81,7 +81,7 @@ func Post(w *gin.WrapContenxt) {
 func Delete(w *gin.WrapContenxt) {
 	if err := store.DB.Where("id = ?", "").Delete(&model.Application{}).Error; err != nil {
 		log.Println(err)
-		w.ErrorJSON("删除应用失败")
+		w.ErrorJSON(errAppDelete)
 	} else {
 		w.Status(http.StatusNoContent)
 	}

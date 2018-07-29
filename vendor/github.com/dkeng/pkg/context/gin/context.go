@@ -1,6 +1,7 @@
 package gin
 
 import (
+	"errors"
 	"net/http"
 
 	ggin "github.com/gin-gonic/gin"
@@ -31,21 +32,25 @@ func (w *WrapContenxt) OKJSON(obj interface{}) {
 	w.JSON(http.StatusOK, obj)
 }
 
+var (
+	errIncomplete = errors.New("参数信息不完整")
+)
+
 // ErrorJSON 返回状态等于400的Error
-func (w *WrapContenxt) ErrorJSON(err string) {
+func (w *WrapContenxt) ErrorJSON(err error) {
 	w.JSON(http.StatusBadRequest, ggin.H{
-		"error": err,
+		"error": err.Error(),
 	})
 }
 
 // BindValidation 绑定验证
 func (w *WrapContenxt) BindValidation(v Verifier, obj interface{}) bool {
 	if err := w.ShouldBind(v); err != nil {
-		w.ErrorJSON("参数信息不完整")
+		w.ErrorJSON(errIncomplete)
 		return false
 	}
 	if err := v.Validation(obj); err != nil {
-		w.ErrorJSON(err.Error())
+		w.ErrorJSON(err)
 		return false
 	}
 	return true

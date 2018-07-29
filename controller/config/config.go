@@ -27,7 +27,7 @@ func Post(w *gin.WrapContenxt) {
 	conf.Value = cm.Value
 	conf.Version = cm.Version
 	if err := store.DB.Create(conf).Error; err != nil {
-		w.ErrorJSON(errConfigAdd.Error())
+		w.ErrorJSON(errConfigAdd)
 	} else {
 		w.Status(http.StatusCreated)
 	}
@@ -45,7 +45,7 @@ func Put(w *gin.WrapContenxt) {
 		return
 	}
 	if err := store.DB.Model(&model.Config{}).Update(conf).Error; err != nil {
-		w.ErrorJSON(errConfigUpdate.Error())
+		w.ErrorJSON(errConfigUpdate)
 	} else {
 		w.Status(http.StatusCreated)
 	}
