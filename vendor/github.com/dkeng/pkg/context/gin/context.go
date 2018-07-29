@@ -39,12 +39,12 @@ func (w *WrapContenxt) ErrorJSON(err string) {
 }
 
 // BindValidation 绑定验证
-func (w *WrapContenxt) BindValidation(v Verifier) bool {
+func (w *WrapContenxt) BindValidation(v Verifier, obj interface{}) bool {
 	if err := w.ShouldBind(v); err != nil {
 		w.ErrorJSON("参数信息不完整")
 		return false
 	}
-	if err := v.Validation(); err != nil {
+	if err := v.Validation(obj); err != nil {
 		w.ErrorJSON(err.Error())
 		return false
 	}
@@ -54,5 +54,5 @@ func (w *WrapContenxt) BindValidation(v Verifier) bool {
 // Verifier 验证人
 type Verifier interface {
 	// Validation 验证
-	Validation() error
+	Validation(obj interface{}) error
 }

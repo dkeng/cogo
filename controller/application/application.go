@@ -19,7 +19,7 @@ import (
 func Get(w *gin.WrapContenxt) {
 	var apps []model.Application
 	if store.DB.Find(apps).RecordNotFound() {
-		w.ErrorJSON("未查到配置项")
+		w.Status(404)
 	} else {
 		w.OKJSON(gin.Result{
 			"data":  apps,
@@ -53,7 +53,7 @@ func GetConfigs(w *gin.WrapContenxt) {
 
 	var configs []model.Config
 	if store.DB.Where(query, values...).Find(&configs).RecordNotFound() {
-		w.ErrorJSON("未查到配置项")
+		w.Status(404)
 	} else {
 		w.OKJSON(gin.Result{
 			"data":  configs,
